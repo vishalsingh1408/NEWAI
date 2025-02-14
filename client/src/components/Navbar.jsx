@@ -11,7 +11,7 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
   return (
-    <nav className="h-16 p-4 sticky top-0 z-50 bg-white backdrop-blur-md opacity-80">
+    <nav className="bg-opacity-80 backdrop-blur-md p-4 text-black sticky top-0 z-50">
       <div className=" flex mx-6 items-center justify-between ">
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
@@ -23,7 +23,7 @@ function Navbar() {
         </motion.h1>
 
         <ul className="hidden md:flex gap-4">
-          {['Home', 'Categories', 'Channels', 'About'].map((item) => (
+          {['Home', 'Categories', 'Channels', 'About','Blog'].map((item) => (
             <motion.li
               whileHover={{ scale: 1.1 }}
               transition={{ type: 'spring', stiffness: 100 }}
@@ -37,14 +37,14 @@ function Navbar() {
 
         <div className="flex space-x-4 items-center justify-center">
           <Link to="/login" className="hidden md:block">
-            <Button variant="white">Login</Button>
+            <Button variant="white" size='xs'>Login</Button>
           </Link>
 
           <Link to="/register" className="hidden md:block">
             {' '}
-            <Button variant="white">Register</Button>
+            <Button variant="white" size='xs'>Register</Button>
           </Link>
-          <button onClick={handleClick} className="md:hidden">
+          <button onClick={handleClick}  className="md:hidden">
             {isOpen ? <X /> : <Menu />}
           </button>
         </div>
