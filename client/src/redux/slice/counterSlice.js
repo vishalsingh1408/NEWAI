@@ -15,6 +15,7 @@ const counterSlice = createSlice({
       state.count -= 1;
     }
   },
+
 });
 
 
