@@ -4,22 +4,21 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import '@mantine/core/styles.css';
+import {Toaster} from 'sonner'
 import Preferences from './pages/preferences';
 import { fetchProduct } from './redux/slice/productSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 function App() {
-  const {loading , products} = useSelector((state)=>state.product)
-  console.log(loading,products)
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProduct());
-  }, []);
+
 
   return (
     <div>
+      
       <Navbar />
 
+
+<Toaster/>
       <Preferences />
       <Routes>
         <Route path="/login" element={<Login />} />

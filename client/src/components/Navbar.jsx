@@ -5,6 +5,7 @@ import { Button } from "@mantine/core";
 import { X, Menu } from "lucide-react";
 
 function Navbar() {
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
