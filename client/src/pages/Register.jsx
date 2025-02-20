@@ -9,7 +9,9 @@ const Register = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
   const { register, handleSubmit } = useForm();
-  console.log(loading);
+
+
+  
   const onSubmit = (data) => {
     console.log(data);
     dispatch(SignUp(data));
