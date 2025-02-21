@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@mantine/core";
 import { X, Menu } from "lucide-react";
-import { useSelector } from "react-redux";
-import ProfileDropDown from "./ProfileDropDown";
+
 function Navbar() {
-const {authenticated} = useSelector((state)=>state.auth)
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -40,9 +39,8 @@ const {authenticated} = useSelector((state)=>state.auth)
           ))}
         </ul>
 
-     <div className="flex space-x-4 items-center">
-    {!authenticated && 
-    <div className="flex gap-6">
+     
+        <div className="flex space-x-4 items-center">
           <Link to="/login" className="hidden md:block">
             <Button variant="white" size="xs">
               Login
@@ -53,9 +51,8 @@ const {authenticated} = useSelector((state)=>state.auth)
             <Button variant="white" size="xs">
               Register
             </Button>
-          </Link> </div>}    
- 
- {authenticated && <ProfileDropDown/>}
+          </Link>
+
        
           <motion.button
             initial={{ opacity: 0, y: -10 }}

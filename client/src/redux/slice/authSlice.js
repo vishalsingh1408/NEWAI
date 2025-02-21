@@ -1,14 +1,8 @@
-import { removeCookie, setCookie } from '../../utils/utils';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { getCookie } from '../../utils/utils';
 import { toast } from 'sonner';
 const initialState = {
   loading: false,
-  authenticated:  getCookie('isAuthenticated') || false,
-  name: getCookie('name' )|| null,
-  id: getCookie('id') || null,
-  preferences: [],
 };
 
 export const SignUp = createAsyncThunk(
@@ -39,7 +33,7 @@ export const login = createAsyncThunk(
         `${import.meta.env.VITE_API_URL}/auth/verify`,
         { withCredentials: true }
       );
-      return { ...res.data, ...verifyres.data };
+      return res.data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -49,16 +43,6 @@ export const login = createAsyncThunk(
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers : {
-    signOut : function(state){
-      state.authenticated = false ;
-      state.id = null ;
-      state.name = null ;
-      removeCookie('isAuthenticated')
-      removeCookie('name')
-      removeCookie('id')
-    }
-  },
   extraReducers: (builder) => {
     builder
       .addCase(SignUp.pending, (state) => {
@@ -79,15 +63,6 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
-        state.authenticated = action.payload.authenticated;
-        state.name = action.payload.name;
-        state.id = action.payload.id;
-        setCookie('isAuthenticated', action.payload.authenticated);
-        setCookie('name', action.payload.name);
-        setCookie('id', action.payload.id);
-        state.preferences = action.payload.preferences;
-        console.log(action.payload);
-        toast.success(action.payload.message);
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -96,4 +71,3 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const {signOut} = authSlice.actions

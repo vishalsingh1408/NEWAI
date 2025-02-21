@@ -25,14 +25,13 @@ export const login = async (req, res) => {
       'hello_this_string',
       { expiresIn: '1d' }
     );
-    console.log(user)
 
     res.cookie('token', token, {
       httpOnly: true,
     });
 
     res.status(200).json({
-     preferences : user.preferences,
+      token,
       message: 'login successfull',
     });
   } catch (error) {}
